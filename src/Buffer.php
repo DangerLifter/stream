@@ -8,6 +8,9 @@ use React\EventLoop\LoopInterface;
 /** @event full-drain */
 class Buffer extends EventEmitter implements WritableStreamInterface
 {
+	// fix for http://stackoverflow.com/questions/14695247/in-php-openssl-error-messages-error-1409f07f-ssl-routines-ssl3-write-pendin
+	public $partialSize = 10000;
+
     public $stream;
     public $listening = false;
     public $softLimit = 2048;
@@ -85,7 +88,7 @@ class Buffer extends EventEmitter implements WritableStreamInterface
 
         set_error_handler(array($this, 'errorHandler'));
 
-        $sent = fwrite($this->stream, $this->data);
+        $sent = fwrite($this->stream, substr($this->data, 0, $this->partialSize));
 
         restore_error_handler();
 

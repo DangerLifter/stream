@@ -1,3 +1,10 @@
+/*
+this is special version with limited buffer size on fwrite which helps resolve
+openssl issue with uploading big files. Like this one:
+http://stackoverflow.com/questions/14695247/in-php-openssl-error-messages-error-1409f07f-ssl-routines-ssl3-write-pendin
+*/
+
+
 # Stream Component
 
 [![Build Status](https://secure.travis-ci.org/reactphp/stream.png?branch=master)](http://travis-ci.org/reactphp/stream)
