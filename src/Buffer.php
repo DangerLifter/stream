@@ -9,7 +9,7 @@ use React\EventLoop\LoopInterface;
 class Buffer extends EventEmitter implements WritableStreamInterface
 {
 	// fix for http://stackoverflow.com/questions/14695247/in-php-openssl-error-messages-error-1409f07f-ssl-routines-ssl3-write-pendin
-	public $partialSize = 10000;
+	public $partialSize = 8192; // Do not use more size! leads to appear same issue in some cases.
 
     public $stream;
     public $listening = false;
